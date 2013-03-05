@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Application context definition for GreenPages JPA. -->
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.osgi.org/xmlns/blueprint/v1.0.0
+            http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+			http://www.springframework.org/schema/data/jpa
+			http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+	<!-- <bean class="at.emundo.osgi.module2.DefaultService2" id="spring2Bean" 
+		/> <property name="emf" ref="entityManagerFactory" /> -->
+
+	<bean id="spring2Bean" class="at.emundo.osgi.module2.DefaultService2">
+		<property name="service1" ref="spring1Bean" />
+		<property name="repo" ref="entityTwoRepository"></property>
+	</bean>
+
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<!-- <context:load-time-weaver aspectj-weaving="on" /> -->
+
+	<tx:annotation-driven mode="proxy" />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	<jpa:repositories base-package="at.emundo.osgi.module2">
+	</jpa:repositories>
+
+	<!-- <bean class="at.emundo.osgi.module2.internal.Module2Configuration" 
+		/> -->
+
+	<!-- be sure to include the JavaConfig bean post-processor -->
+	<!-- <bean class="org.springframework.context.annotation.ConfigurationClassPostProcessor" 
+		/> -->
+</blueprint>

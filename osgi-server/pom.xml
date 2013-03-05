@@ -1,0 +1,124 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>at.emundo.osgi</groupId>
+		<artifactId>osgi</artifactId>
+		<version>0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>osgi-server</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>osgi-over-slf4j</artifactId>
+			<version>1.7.2</version>
+		</dependency>		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.6.1</version>
+		</dependency>		
+		<!-- gemini blueprint -->
+		<dependency>
+			<groupId>org.eclipse.gemini.blueprint</groupId>
+			<artifactId>gemini-blueprint-extender</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.gemini.blueprint</groupId>
+			<artifactId>gemini-blueprint-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.gemini.blueprint</groupId>
+			<artifactId>gemini-blueprint-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.scr</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.glassfish.grizzly.osgi</groupId> -->
+		<!-- <artifactId>grizzly-httpservice-bundle</artifactId> -->
+		<!-- <version>2.3-rc2</version> -->
+		<!-- <version>2.2.19</version> -->
+		<!-- <exclusions> -->
+		<!-- <exclusion> -->
+		<!-- <artifactId>grizzly-httpservice</artifactId> -->
+		<!-- <groupId>org.glassfish.grizzly.osgi</groupId> -->
+		<!-- </exclusion> -->
+		<!-- </exclusions> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>org.glassfish.gmbal</groupId>
+			<artifactId>gmbal-impl</artifactId>
+			<version>2.0.0-b006</version>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.glassfish.gmbal</groupId> -->
+		<!-- <artifactId>gmbal-api-only</artifactId> -->
+		<!-- <version>3.2.0-b003</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>at.emundo.osgi</groupId>
+			<artifactId>osgi-persistence</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>at.emundo.osgi</groupId>
+			<artifactId>osgi-module1</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>at.emundo.osgi</groupId>
+			<artifactId>osgi-module2</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>at.emundo.osgi</groupId>
+			<artifactId>osgi-http</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>run</id>
+			<build>
+				<defaultGoal>pax:provision</defaultGoal>
+				<plugins>
+					<plugin>
+						<groupId>org.ops4j</groupId>
+						<artifactId>maven-pax-plugin</artifactId>
+						<version>1.5</version>
+						<configuration>
+							<runner>1.8.5</runner>
+							<framework>equinox</framework>
+							<provision>
+								<param>--log=debug</param>
+								<param>--vmOptions=-Dorg.osgi.service.http.port=8081 -Declipse.log.level=debug -Dosgi.framework.extensions=org.eclipse.equinox.weaving.hook</param>
+								<param>--workingDirectory=target/runner</param>
+								<param>--ee=JavaSE-1.7</param>
+								<param>--version=3.8.1</param>
+								<param>--profiles=log</param>
+								<!-- <param>wrap:mvn:org.json/json/20090211</param> -->
+								<!-- <param>wrap:mvn:org.bouncycastle/bcprov-jdk16/1.46</param> -->
+								<!-- <param>wrap:mvn:com.google.code.javapns/javapns/2.3.365</param> -->
+								<!-- <param>wrap:mvn:taglibs/standard/1.1.2</param> -->
+							</provision>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>
