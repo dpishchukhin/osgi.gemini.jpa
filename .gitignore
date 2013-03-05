@@ -1,6 +1,3 @@
-
-/osgi-http/target
-/osgi-module1/target
-/osgi-module2/target
-/osgi-persistence/target
-/osgi-server/target
+*/target
+*
+/.settings
