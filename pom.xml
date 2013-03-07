@@ -446,4 +446,41 @@
 		<module>osgi-http</module>
 		<module>osgi-server</module>
 	</modules>
+
+	<repositories>
+		<repository>
+			<id>eclipselink</id>
+			<url>http://download.eclipse.org/rt/eclipselink/maven.repo/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>gemini</id>
+			<url>http://download.eclipse.org/gemini/mvn/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.libraries.release</id>
+			<name>SpringSource Enterprise Bundle Repository - SpringSource Library Releases</name>
+			<url>http://repository.springsource.com/maven/libraries/release</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.libraries.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Library Releases</name>
+			<url>http://repository.springsource.com/maven/libraries/external</url>
+		</repository>
+		<repository>
+			<id>alfresco</id>
+			<url>https://maven.alfresco.com/nexus/content/repositories/public/</url>
+		</repository>
+	</repositories>
 </project>
